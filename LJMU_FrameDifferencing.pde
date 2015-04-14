@@ -106,7 +106,7 @@ void draw() {
           PImage newImage = createImage(width, height, ARGB);
           newImage.copy(video, 0, 0, video.width, video.height, 0, 0, video.width, video.height);
           if(SAVE_PICTURES == true){
-            newImage.save("data/"+YYYYMMDD+"_"+hour()+minute()+second()+".jpg");
+            newImage.save(dataPath(YYYYMMDD+"_"+hour()+minute()+second()+".jpg"));
           }
           if (mPics.size()<PICS_IN_SLIDESHOW) {
             mPics.add(newImage);
