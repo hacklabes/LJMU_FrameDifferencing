@@ -19,6 +19,8 @@ int PICS_IN_SLIDESHOW = 20;
 // 500 = half-second
 int SLIDESHOW_PERIOD = 500;
 
+// whether to save pictures to hard-drive or not
+boolean SAVE_PICTURES = true;
 
 long lastCaptureMillis;
 int numPixels;
@@ -26,6 +28,7 @@ boolean debug;
 boolean needToCaptureBackground;
 Capture video;
 PImage mBackground, backDiff, frameDiff, previousFrame;
+String YYYYMMDD = year()+"-"+month()+"-"+day();
 
 ArrayList<PImage> mPics;
 int displayIndex;
@@ -103,6 +106,9 @@ void draw() {
           PImage newImage = createImage(width, height, ARGB);
           newImage.copy(video, 0, 0, video.width, video.height, 0, 0, video.width, video.height);
           // TODO: save picture
+          if(SAVE_PICTURES == true){
+            newImage.save("data/"+YYYYMMDD+"_"+hour()+minute()+second()+".jpg");
+          }
           if (mPics.size()<PICS_IN_SLIDESHOW) {
             mPics.add(newImage);
           } else {
@@ -123,7 +129,7 @@ void draw() {
 }
 
 void keyPressed() {
-  if (key == ' ' || key = 'd' || key = 'D') {
+  if (key == ' ' || key == 'd' || key == 'D') {
     debug = !debug;
   } else if (key == 'c' || key == 'C') {
     mBackground.copy(video, 0, 0, video.width, video.height, 0, 0, video.width, video.height);
