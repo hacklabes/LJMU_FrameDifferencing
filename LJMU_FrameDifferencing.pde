@@ -105,7 +105,6 @@ void draw() {
         if (millis()-lastCaptureMillis > CAPTURE_PERIOD) {
           PImage newImage = createImage(width, height, ARGB);
           newImage.copy(video, 0, 0, video.width, video.height, 0, 0, video.width, video.height);
-          // TODO: save picture
           if(SAVE_PICTURES == true){
             newImage.save("data/"+YYYYMMDD+"_"+hour()+minute()+second()+".jpg");
           }
